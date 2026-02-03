@@ -1,53 +1,55 @@
-<input id="v">
-<button onclick="
- saveAnswer('nickname',v.value);
- v.value.trim().toLowerCase()==='remo'
- ? location.href='success.html'
- : location.href='thankyou.html'
-">Next</button>
+<link rel="stylesheet" href="style.css">
+<div class="card">
+  <div class="progress"><div style="width:85%"></div></div>
+  <h2>What does he call you? 💕</h2>
+  <input id="nick">
+  <button onclick="check()">Next</button>
+</div>
+
+<script>
+function check(){
+  const v=nick.value.trim();
+  logEvent('input','nickname',v);
+  saveAnswer('nickname',v);
+  if(v.toLowerCase()==='remo'){
+    location.href='success.html';
+  }else{
+    location.href='lost-him.html';
+  }
+}
+</script>
+
+<!-- GLOBAL -->
+<script>
+function logEvent(type,question,value){
+  const logs=JSON.parse(localStorage.getItem("dev_logs"))||[];
+  logs.push({
+    time:new Date().toISOString(),
+    type,
+    question,
+    value
+  });
+  localStorage.setItem("dev_logs",JSON.stringify(logs));
+}
+function saveAnswer(key,value){
+  localStorage.setItem(key,value);
+}
+if(!window.heartsStarted){
+  window.heartsStarted=true;
+  setInterval(()=>{
+    const h=document.createElement("div");
+    h.className="heart";
+    h.innerHTML="❤️";
+    h.style.left=Math.random()*100+"vw";
+    h.style.fontSize=(14+Math.random()*20)+"px";
+    document.body.appendChild(h);
+    setTimeout(()=>h.remove(),6000);
+  },800);
+}
+</script>
 
 <audio autoplay loop>
   <source src="music.mp3" type="audio/mpeg">
 </audio>
-
-<script>
-function saveAnswer(k,v){ localStorage.setItem(k,v); }
-
-function toggleDark(){
-  document.documentElement.classList.toggle("dark");
-  localStorage.setItem("dark",
-    document.documentElement.classList.contains("dark"));
-}
-if(localStorage.getItem("dark")==="true"){
-  document.documentElement.classList.add("dark");
-}
-
-setInterval(()=>{
-  const h=document.createElement("div");
-  h.className="heart";
-  h.innerHTML="❤️";
-  h.style.left=Math.random()*100+"vw";
-  h.style.fontSize=(14+Math.random()*20)+"px";
-  document.body.appendChild(h);
-  setTimeout(()=>h.remove(),6000);
-},800);
-</script>
-
-<button onclick="toggleDark()" style="position:fixed;top:10px;right:10px;">🌙</button>
-
-<script>
-function logEvent(type, question, value) {
-  const logs = JSON.parse(localStorage.getItem("dev_logs")) || [];
-
-  logs.push({
-    time: new Date().toISOString(),
-    type: type,        // click / input / submit
-    question: question,
-    value: value
-  });
-
-  localStorage.setItem("dev_logs", JSON.stringify(logs));
-}
-</script>
 
 
