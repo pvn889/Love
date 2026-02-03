@@ -1,3 +1,14 @@
+<link rel="stylesheet" href="style.css">
+<div class="card">
+  <h2>Developer View 🔒</h2>
+  <pre id="out"></pre>
+</div>
+
+<script>
+document.getElementById("out").innerText =
+ JSON.stringify({...localStorage},null,2);
+</script>
+
 <audio autoplay loop>
   <source src="music.mp3" type="audio/mpeg">
 </audio>
