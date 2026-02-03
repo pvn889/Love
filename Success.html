@@ -1,0 +1,39 @@
+<link rel="stylesheet" href="style.css">
+<div class="card">
+  <h2>Congratulations 🎉</h2>
+  <p>Your gift is waiting… 💝</p>
+  <button onclick="location.href='final.html'">Next</button>
+</div>
+
+<!-- GLOBAL -->
+<script>
+function logEvent(type,question,value){
+  const logs=JSON.parse(localStorage.getItem("dev_logs"))||[];
+  logs.push({
+    time:new Date().toISOString(),
+    type,
+    question,
+    value
+  });
+  localStorage.setItem("dev_logs",JSON.stringify(logs));
+}
+function saveAnswer(key,value){
+  localStorage.setItem(key,value);
+}
+if(!window.heartsStarted){
+  window.heartsStarted=true;
+  setInterval(()=>{
+    const h=document.createElement("div");
+    h.className="heart";
+    h.innerHTML="❤️";
+    h.style.left=Math.random()*100+"vw";
+    h.style.fontSize=(14+Math.random()*20)+"px";
+    document.body.appendChild(h);
+    setTimeout(()=>h.remove(),6000);
+  },800);
+}
+</script>
+
+<audio autoplay loop>
+  <source src="music.mp3" type="audio/mpeg">
+</audio>
