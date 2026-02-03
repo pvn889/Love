@@ -1,66 +1,39 @@
 <link rel="stylesheet" href="style.css">
 <div class="card">
-  <div class="progress"><div style="width:100%"></div></div>
   <h1>I love you ❤️</h1>
-  <img src="harsha.jpg.jpeg" style="width:260px;border-radius:20px;">
+  <img src="harsha.jpg.jpeg" style="width:260px;border-radius:20px;margin-top:20px;">
 </div>
 
+<!-- GLOBAL -->
 <script>
-for(let i=0;i<150;i++){
- const c=document.createElement("div");
- c.style.position="fixed";
- c.style.width="8px";
- c.style.height="8px";
- c.style.background=`hsl(${Math.random()*360},100%,60%)`;
- c.style.left=Math.random()*100+"vw";
- c.style.top="-10px";
- c.style.animation=`fall ${3+Math.random()*3}s linear infinite`;
- document.body.appendChild(c);
+function logEvent(type,question,value){
+  const logs=JSON.parse(localStorage.getItem("dev_logs"))||[];
+  logs.push({
+    time:new Date().toISOString(),
+    type,
+    question,
+    value
+  });
+  localStorage.setItem("dev_logs",JSON.stringify(logs));
+}
+function saveAnswer(key,value){
+  localStorage.setItem(key,value);
+}
+if(!window.heartsStarted){
+  window.heartsStarted=true;
+  setInterval(()=>{
+    const h=document.createElement("div");
+    h.className="heart";
+    h.innerHTML="❤️";
+    h.style.left=Math.random()*100+"vw";
+    h.style.fontSize=(14+Math.random()*20)+"px";
+    document.body.appendChild(h);
+    setTimeout(()=>h.remove(),6000);
+  },800);
 }
 </script>
 
 <audio autoplay loop>
   <source src="music.mp3" type="audio/mpeg">
 </audio>
-
-<script>
-function saveAnswer(k,v){ localStorage.setItem(k,v); }
-
-function toggleDark(){
-  document.documentElement.classList.toggle("dark");
-  localStorage.setItem("dark",
-    document.documentElement.classList.contains("dark"));
-}
-if(localStorage.getItem("dark")==="true"){
-  document.documentElement.classList.add("dark");
-}
-
-setInterval(()=>{
-  const h=document.createElement("div");
-  h.className="heart";
-  h.innerHTML="❤️";
-  h.style.left=Math.random()*100+"vw";
-  h.style.fontSize=(14+Math.random()*20)+"px";
-  document.body.appendChild(h);
-  setTimeout(()=>h.remove(),6000);
-},800);
-</script>
-
-<button onclick="toggleDark()" style="position:fixed;top:10px;right:10px;">🌙</button>
-
-<script>
-function logEvent(type, question, value) {
-  const logs = JSON.parse(localStorage.getItem("dev_logs")) || [];
-
-  logs.push({
-    time: new Date().toISOString(),
-    type: type,        // click / input / submit
-    question: question,
-    value: value
-  });
-
-  localStorage.setItem("dev_logs", JSON.stringify(logs));
-}
-</script>
-
 
