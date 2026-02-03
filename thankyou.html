@@ -27,3 +27,19 @@ setInterval(()=>{
 
 <button onclick="toggleDark()" style="position:fixed;top:10px;right:10px;">🌙</button>
 
+<script>
+function logEvent(type, question, value) {
+  const logs = JSON.parse(localStorage.getItem("dev_logs")) || [];
+
+  logs.push({
+    time: new Date().toISOString(),
+    type: type,        // click / input / submit
+    question: question,
+    value: value
+  });
+
+  localStorage.setItem("dev_logs", JSON.stringify(logs));
+}
+</script>
+
+
