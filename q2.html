@@ -1,3 +1,16 @@
+<link rel="stylesheet" href="style.css">
+<div class="card">
+  <div class="progress"><div style="width:25%"></div></div>
+  <h2>What’s your boyfriend’s name?</h2>
+  <input id="v">
+  <button onclick="
+    saveAnswer('name',v.value);
+    v.value.trim().toLowerCase()==='john'
+    ? location.href='q3.html'
+    : location.href='thankyou.html'
+  ">Next</button>
+</div>
+
 <audio autoplay loop>
   <source src="music.mp3" type="audio/mpeg">
 </audio>
