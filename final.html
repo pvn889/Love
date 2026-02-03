@@ -1,3 +1,24 @@
+<link rel="stylesheet" href="style.css">
+<div class="card">
+  <div class="progress"><div style="width:100%"></div></div>
+  <h1>I love you ❤️</h1>
+  <img src="harsha.jpg.jpeg" style="width:260px;border-radius:20px;">
+</div>
+
+<script>
+for(let i=0;i<150;i++){
+ const c=document.createElement("div");
+ c.style.position="fixed";
+ c.style.width="8px";
+ c.style.height="8px";
+ c.style.background=`hsl(${Math.random()*360},100%,60%)`;
+ c.style.left=Math.random()*100+"vw";
+ c.style.top="-10px";
+ c.style.animation=`fall ${3+Math.random()*3}s linear infinite`;
+ document.body.appendChild(c);
+}
+</script>
+
 <audio autoplay loop>
   <source src="music.mp3" type="audio/mpeg">
 </audio>
