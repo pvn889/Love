@@ -3,42 +3,32 @@
   <div class="progress"><div style="width:40%"></div></div>
   <h2>How long do you want him in your life?</h2>
 
-  <button onclick="
-    logEvent('click','life_duration','life long');
-    saveAnswer('life_duration','life long');
-    location.href='q4.html';
-  ">Life long</button>
-
-  <button class="alt" onclick="
-    logEvent('click','life_duration','short term');
-    saveAnswer('life_duration','short term');
-    location.href='lost-him.html';
-  ">Short term</button>
-
-  <button class="alt" onclick="
-    logEvent('click','life_duration','dont know');
-    saveAnswer('life_duration','dont know');
-    location.href='lost-him.html';
-  ">I don’t know</button>
+  <button type="button" onclick="win('life long','q4.html')">Life long</button>
+  <button type="button" class="alt" onclick="lose('short term')">Short term</button>
+  <button type="button" class="alt" onclick="lose('dont know')">I don’t know</button>
 </div>
+
+<script>
+function win(v,n){ logEvent('click','life',v); saveAnswer('life',v); go(n); }
+function lose(v){ logEvent('click','life',v); saveAnswer('life',v); go('lost.html'); }
+</script>
 
 <!-- GLOBAL -->
 <script>
+function go(p){ location.href=p; }
+
 function logEvent(type,question,value){
   const logs=JSON.parse(localStorage.getItem("dev_logs"))||[];
-  logs.push({
-    time:new Date().toISOString(),
-    type,
-    question,
-    value
-  });
+  logs.push({time:new Date().toISOString(),type,question,value});
   localStorage.setItem("dev_logs",JSON.stringify(logs));
 }
-function saveAnswer(key,value){
-  localStorage.setItem(key,value);
+
+function saveAnswer(k,v){
+  localStorage.setItem(k,v);
 }
-if(!window.heartsStarted){
-  window.heartsStarted=true;
+
+if(!window.hearts){
+  window.hearts=true;
   setInterval(()=>{
     const h=document.createElement("div");
     h.className="heart";
