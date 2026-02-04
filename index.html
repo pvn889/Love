@@ -3,37 +3,35 @@
   <div class="progress"><div style="width:10%"></div></div>
   <h2>Are you in a relationship? 💕</h2>
 
-  <button onclick="
+  <button type="button" onclick="
     logEvent('click','relationship','yes');
     saveAnswer('relationship','yes');
-    location.href='name.html';
+    go('name.html');
   ">Yes</button>
 
-  <button class="alt" onclick="
+  <button type="button" class="alt" onclick="
     logEvent('click','relationship','no');
     saveAnswer('relationship','no');
-    location.href='thankyou.html';
+    go('thankyou.html');
   ">No</button>
 </div>
 
 <!-- GLOBAL -->
-<!-- paste global developer logic here -->
 <script>
+function go(p){ location.href=p; }
+
 function logEvent(type,question,value){
   const logs=JSON.parse(localStorage.getItem("dev_logs"))||[];
-  logs.push({
-    time:new Date().toISOString(),
-    type,
-    question,
-    value
-  });
+  logs.push({time:new Date().toISOString(),type,question,value});
   localStorage.setItem("dev_logs",JSON.stringify(logs));
 }
-function saveAnswer(key,value){
-  localStorage.setItem(key,value);
+
+function saveAnswer(k,v){
+  localStorage.setItem(k,v);
 }
-if(!window.heartsStarted){
-  window.heartsStarted=true;
+
+if(!window.hearts){
+  window.hearts=true;
   setInterval(()=>{
     const h=document.createElement("div");
     h.className="heart";
@@ -49,4 +47,5 @@ if(!window.heartsStarted){
 <audio autoplay loop>
   <source src="music.mp3" type="audio/mpeg">
 </audio>
+
 
