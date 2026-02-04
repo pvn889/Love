@@ -1,14 +1,10 @@
 <link rel="stylesheet" href="style.css">
 <div class="card">
   <h2>Developer Logs 🔒</h2>
-  <pre id="out"></pre>
+  <pre id="o"></pre>
 </div>
 
 <script>
-document.getElementById("out").innerText =
-  JSON.stringify(JSON.parse(localStorage.getItem("dev_logs")),null,2);
+o.innerText=JSON.stringify(JSON.parse(localStorage.getItem("dev_logs")),null,2);
 </script>
-
-
-<button onclick="toggleDark()" style="position:fixed;top:10px;right:10px;">🌙</button>
 
