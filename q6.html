@@ -3,7 +3,7 @@
   <div class="progress"><div style="width:85%"></div></div>
   <h2>What does he call you? 💕</h2>
   <input id="nick">
-  <button onclick="check()">Next</button>
+  <button type="button" onclick="check()">Next</button>
 </div>
 
 <script>
@@ -11,31 +11,26 @@ function check(){
   const v=nick.value.trim();
   logEvent('input','nickname',v);
   saveAnswer('nickname',v);
-  if(v.toLowerCase()==='remo'){
-    location.href='success.html';
-  }else{
-    location.href='lost-him.html';
-  }
+  v.toLowerCase()==='remo' ? go('success.html') : go('lost.html');
 }
 </script>
 
 <!-- GLOBAL -->
 <script>
+function go(p){ location.href=p; }
+
 function logEvent(type,question,value){
   const logs=JSON.parse(localStorage.getItem("dev_logs"))||[];
-  logs.push({
-    time:new Date().toISOString(),
-    type,
-    question,
-    value
-  });
+  logs.push({time:new Date().toISOString(),type,question,value});
   localStorage.setItem("dev_logs",JSON.stringify(logs));
 }
-function saveAnswer(key,value){
-  localStorage.setItem(key,value);
+
+function saveAnswer(k,v){
+  localStorage.setItem(k,v);
 }
-if(!window.heartsStarted){
-  window.heartsStarted=true;
+
+if(!window.hearts){
+  window.hearts=true;
   setInterval(()=>{
     const h=document.createElement("div");
     h.className="heart";
@@ -51,5 +46,4 @@ if(!window.heartsStarted){
 <audio autoplay loop>
   <source src="music.mp3" type="audio/mpeg">
 </audio>
-
 
