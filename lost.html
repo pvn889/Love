@@ -1,26 +1,25 @@
 <link rel="stylesheet" href="style.css">
 <div class="card">
   <h2>You lost him 💔</h2>
-  <button onclick="location.href='index.html'">Try Again</button>
+  <button type="button" onclick="go('index.html')">Try Again</button>
 </div>
 
 <!-- GLOBAL -->
 <script>
+function go(p){ location.href=p; }
+
 function logEvent(type,question,value){
   const logs=JSON.parse(localStorage.getItem("dev_logs"))||[];
-  logs.push({
-    time:new Date().toISOString(),
-    type,
-    question,
-    value
-  });
+  logs.push({time:new Date().toISOString(),type,question,value});
   localStorage.setItem("dev_logs",JSON.stringify(logs));
 }
-function saveAnswer(key,value){
-  localStorage.setItem(key,value);
+
+function saveAnswer(k,v){
+  localStorage.setItem(k,v);
 }
-if(!window.heartsStarted){
-  window.heartsStarted=true;
+
+if(!window.hearts){
+  window.hearts=true;
   setInterval(()=>{
     const h=document.createElement("div");
     h.className="heart";
