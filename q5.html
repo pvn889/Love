@@ -3,42 +3,33 @@
   <div class="progress"><div style="width:70%"></div></div>
   <h2>How much does he love you?</h2>
 
-  <button class="alt" onclick="lose('10-20')">10–20%</button>
-  <button class="alt" onclick="lose('40-60')">40–60%</button>
-  <button onclick="win('80-99','q6.html')">80–99%</button>
-  <button class="alt" onclick="lose('dont know')">I don’t know</button>
+  <button class="alt" type="button" onclick="lose('10-20')">10–20%</button>
+  <button class="alt" type="button" onclick="lose('40-60')">40–60%</button>
+  <button type="button" onclick="win('80-99','q6.html')">80–99%</button>
+  <button class="alt" type="button" onclick="lose('dont know')">I don’t know</button>
 </div>
 
 <script>
-function win(v,next){
-  logEvent('click','love_him',v);
-  saveAnswer('love_him',v);
-  location.href=next;
-}
-function lose(v){
-  logEvent('click','love_him',v);
-  saveAnswer('love_him',v);
-  location.href='lost-him.html';
-}
+function win(v,n){ logEvent('click','love_him',v); saveAnswer('love_him',v); go(n); }
+function lose(v){ logEvent('click','love_him',v); saveAnswer('love_him',v); go('lost.html'); }
 </script>
 
 <!-- GLOBAL -->
 <script>
+function go(p){ location.href=p; }
+
 function logEvent(type,question,value){
   const logs=JSON.parse(localStorage.getItem("dev_logs"))||[];
-  logs.push({
-    time:new Date().toISOString(),
-    type,
-    question,
-    value
-  });
+  logs.push({time:new Date().toISOString(),type,question,value});
   localStorage.setItem("dev_logs",JSON.stringify(logs));
 }
-function saveAnswer(key,value){
-  localStorage.setItem(key,value);
+
+function saveAnswer(k,v){
+  localStorage.setItem(k,v);
 }
-if(!window.heartsStarted){
-  window.heartsStarted=true;
+
+if(!window.hearts){
+  window.hearts=true;
   setInterval(()=>{
     const h=document.createElement("div");
     h.className="heart";
