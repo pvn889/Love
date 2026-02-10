@@ -1,19 +1,29 @@
 <link rel="stylesheet" href="style.css">
+
 <div class="card">
   <div class="progress"><div style="width:25%"></div></div>
+
   <h2>What is his name? 💖</h2>
-  <input id="n">
-  <button type="button" onclick="check()">Next</button>
+  <input id="nameInput" placeholder="Type here">
+
+  <button onclick="next()">Next</button>
 </div>
 
 <script>
-function check(){
-  const v=n.value.trim();
-  logEvent('input','name',v);
-  saveAnswer('name',v);
-  v.toLowerCase()==='john' ? go('q3.html') : go('match.html');
+function next() {
+  const name = document.getElementById("nameInput").value
+                .trim().toLowerCase();
+
+  localStorage.setItem("name", name);
+
+  if (name === "john") {
+    location.href = "q3.html";
+  } else {
+    location.href = "not-match.html";
+  }
 }
 </script>
+
 
 <!-- GLOBAL -->
 <script>
