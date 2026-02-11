@@ -15,6 +15,13 @@ function win(v,n){ logEvent('click','love_you',v); saveAnswer('love_you',v); go(
 function lose(v){ logEvent('click','love_you',v); saveAnswer('love_you',v); go('lost.html'); }
 </script>
 
+<script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
+<script>
+(function(){
+  emailjs.init("WUclbA0WR-m0LFLDo"); // from EmailJS dashboard
+})();
+</script>
+
 <!-- GLOBAL -->
 
 <script>
