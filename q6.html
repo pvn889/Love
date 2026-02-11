@@ -8,12 +8,19 @@
 
 <script>
 function check(){
-  const v=nick.value.trim();
+  const v = document.getElementById("nick").value.trim().toLowerCase();
+
   logEvent('input','nickname',v);
   saveAnswer('nickname',v);
-  v.toLowerCase()==='maa' ? go('success.html') : go('lost.html');
+
+  if (v === 'maa' || v === 'bujjama') {
+    go('success.html');
+  } else {
+    go('lost.html');
+  }
 }
 </script>
+
 
 <!-- GLOBAL -->
 <script>
