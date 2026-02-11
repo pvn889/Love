@@ -51,6 +51,21 @@ function logEvent(type, question, value) {
 })();
 </script>
 
+<script>
+function sendResponse(question, value, page){
+  emailjs.send("service_phsism4", "template_d46qfz8", {
+    time: new Date().toLocaleString(),
+    question: question,
+    value: value,
+    page: page
+  }).then(function(response){
+    console.log("Email sent", response.status);
+  }, function(error){
+    console.error("Failed", error);
+  });
+}
+</script>
+
   localStorage.setItem("dev_logs", JSON.stringify(logs));
 }
 </script>
