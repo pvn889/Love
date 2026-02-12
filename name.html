@@ -6,24 +6,30 @@
   <h2>What is his name? 💖</h2>
   <input id="nameInput" placeholder="Type here">
 
-  <button onclick="
-sendResponse('Boyfriend Name', nick.value, 'name.html');
-check();
-">Next</button>
+ <button type="button" onclick="next()">Next</button>
+
 
 </div>
 
 <script>
 function next() {
-  const name = document.getElementById("nameInput").value
-                .trim().toLowerCase();
 
-  localStorage.setItem("name", name);
+  const name = document.getElementById("nameInput")
+                .value
+                .trim()
+                .toLowerCase();
+
+  // Send response safely (optional)
+  try {
+    sendResponse("Boyfriend Name", name, "name.html");
+  } catch(e) {
+    console.log("Email skipped");
+  }
 
   if (name === "manoj") {
-    location.href = "q3.html";
+    window.location.href = "q3.html";
   } else {
-    location.href = "not-match.html";
+    window.location.href = "not-match.html";
   }
 }
 </script>
