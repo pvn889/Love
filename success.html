@@ -2,7 +2,23 @@
 <div class="card">
   <h2>Congratulations 🎉</h2>
   <p>Your gift is waiting 💝</p>
-  <button type="button" onclick="go('final.html')">Next</button>
+  <button onclick="goFinal()">Next 💖</button>
+
+<script>
+function goFinal() {
+
+  // Create silent audio to unlock sound permission
+  const unlock = new Audio();
+  unlock.play().catch(()=>{});
+
+  // Small delay then go to final page
+  setTimeout(() => {
+    window.location.href = "final.html";
+  }, 100);
+
+}
+</script>
+
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
