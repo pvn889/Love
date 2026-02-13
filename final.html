@@ -9,9 +9,23 @@
 <body>
 
 <!-- 🎥 Full Screen Background Video -->
-<video id="bgVideo" autoplay loop playsinline>
-  <source src="Love.mp4" type="video/mp4">
+<video id="bgVideo" loop playsinline>
+  <source src="love.mp4" type="video/mp4">
 </video>
+
+<script>
+window.onload = function(){
+
+  const video = document.getElementById("bgVideo");
+
+  // Wait 2.5 seconds before playing
+  setTimeout(function(){
+      video.play().catch(err => console.log(err));
+  }, 2500);
+
+}
+</script>
+
 
 <button id="soundBtn" onclick="enableSound()"
 style="position:fixed;bottom:20px;right:20px;
