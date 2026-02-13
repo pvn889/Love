@@ -8,22 +8,20 @@
     and leads to a lifetime of happiness,
     peace, and beautiful togetherness.
         " Click Next💝"</p>
-  <button onclick="goFinal()">Next 💖</button>
+ <button onclick="goFinal()">Next 💖</button>
 
 <script>
 function goFinal() {
 
-  // Create silent audio to unlock sound permission
-  const unlock = new Audio();
-  unlock.play().catch(()=>{});
+  // Create a small silent audio to unlock sound
+  const audio = new Audio();
+  audio.play().catch(()=>{});
 
-  // Small delay then go to final page
-  setTimeout(() => {
-    window.location.href = "final.html";
-  }, 100);
-
+  // Navigate to final page
+  window.location.href = "final.html";
 }
 </script>
+
 
 </div>
 
