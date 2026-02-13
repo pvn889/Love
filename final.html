@@ -13,6 +13,23 @@
   <source src="Love.mp4" type="video/mp4">
 </video>
 
+<button id="soundBtn" onclick="enableSound()"
+style="position:fixed;bottom:20px;right:20px;
+padding:10px 20px;border:none;border-radius:20px;
+background:#ff4d6d;color:white;font-weight:bold;cursor:pointer;">
+🔊 Turn On Sound
+</button>
+
+<script>
+function enableSound(){
+  const video = document.getElementById("bgVideo");
+  video.muted = false;
+  video.play();
+  document.getElementById("soundBtn").style.display = "none";
+}
+</script>
+
+
 <!-- 💖 Overlay Content -->
 <div class="final-content fade-in">
   <h1>I Love You ❤️ Bujjamma</h1>
