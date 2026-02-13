@@ -1,16 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>For You ❤️</title>
 <link rel="stylesheet" href="style.css">
-<div class="card">
-  <h1>I love you ❤️ Bujjamma </h1>
-  <h2> Naa life  </h2>
-  <img src="harsha.jpg.jpeg" style="width:260px;border-radius:20px;margin-top:20px;">
+</head>
+
+<body>
+
+<!-- 🎥 Full Screen Background Video -->
+<video id="bgVideo" autoplay muted loop playsinline>
+  <source src="love.mp4" type="video/mp4">
+</video>
+
+<!-- 💖 Overlay Content -->
+<div class="final-content fade-in">
+  <h1>I Love You ❤️</h1>
+  <p>Your surprise is waiting forever with me… 💍</p>
+  <button onclick="celebrate()">Celebrate 🎉</button>
 </div>
 
-<script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
+<!-- 🎉 Confetti Canvas -->
+<canvas id="confetti"></canvas>
+
 <script>
-(function(){
-  emailjs.init("WUclbA0WR-m0LFLDo"); // from EmailJS dashboard
-})();
+
+/* 🎊 Confetti Effect */
+function celebrate(){
+  const canvas = document.getElementById('confetti');
+  const ctx = canvas.getContext('2d');
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+
+  let pieces = [];
+  for(let i=0;i<150;i++){
+    pieces.push({
+      x: Math.random()*canvas.width,
+      y: Math.random()*canvas.height,
+      size: Math.random()*8+4,
+      speed: Math.random()*3+2
+    });
+  }
+
+  function draw(){
+    ctx.clearRect(0,0,canvas.width,canvas.height);
+    ctx.fillStyle="pink";
+    pieces.forEach(p=>{
+      ctx.fillRect(p.x,p.y,p.size,p.size);
+      p.y += p.speed;
+      if(p.y > canvas.height) p.y = 0;
+    });
+    requestAnimationFrame(draw);
+  }
+
+  draw();
+}
+
+/* 💖 Floating Hearts */
+setInterval(()=>{
+  const heart=document.createElement("div");
+  heart.className="heart";
+  heart.innerHTML="❤️";
+  heart.style.left=Math.random()*100+"vw";
+  heart.style.fontSize=(14+Math.random()*20)+"px";
+  document.body.appendChild(heart);
+  setTimeout(()=>heart.remove(),6000);
+},800);
+
 </script>
+
+</body>
+</html>
+
 
 
 <!-- GLOBAL -->
