@@ -78,3 +78,77 @@ input{
   from{transform:scale(.9);opacity:0}
   to{transform:scale(1);opacity:1}
 }
+
+/* 🎥 Background Video */
+#bgVideo {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: -1;
+}
+
+/* 💖 Overlay Content */
+.final-content {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+  text-align: center;
+  color: white;
+  background: rgba(0,0,0,0.4);
+  padding: 40px;
+  border-radius: 20px;
+  backdrop-filter: blur(10px);
+}
+
+.final-content h1 {
+  font-size: 40px;
+  margin-bottom: 10px;
+}
+
+.final-content p {
+  font-size: 18px;
+  margin-bottom: 20px;
+}
+
+.final-content button {
+  padding: 12px 25px;
+  font-size: 16px;
+  border: none;
+  border-radius: 25px;
+  background: #ff4f75;
+  color: white;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.final-content button:hover {
+  background: #ff2e5f;
+  transform: scale(1.05);
+}
+
+/* 💖 Floating Hearts */
+.heart {
+  position: fixed;
+  bottom: -20px;
+  animation: floatUp 6s linear forwards;
+}
+
+@keyframes floatUp {
+  0% { transform: translateY(0); opacity:1; }
+  100% { transform: translateY(-100vh); opacity:0; }
+}
+
+/* ✨ Fade In */
+.fade-in {
+  animation: fade 2s ease-in-out;
+}
+
+@keyframes fade {
+  from { opacity:0; transform: translate(-50%,-40%); }
+  to { opacity:1; transform: translate(-50%,-50%); }
+}
+
